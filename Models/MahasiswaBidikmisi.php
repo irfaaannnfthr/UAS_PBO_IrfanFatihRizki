@@ -4,7 +4,7 @@
 //  UAS Pemrograman Berorientasi Objek (PBO)
 //  Kelas   : TRPL 1A
 //  Nama    : Irfan Fatih Rizki
-//  Tahap   : 4 — Subclass MahasiswaBidikmisi
+//  Tahap   : 4 & 5 — Subclass MahasiswaBidikmisi + Polimorfisme
 // ============================================================
 
 require_once 'koneksi.php';
@@ -41,7 +41,8 @@ class MahasiswaBidikmisi extends Mahasiswa
     // ────────────────────────────────────────────────────────
 
     /**
-     * Bidikmisi = UKT ditanggung penuh, tagihan Rp 0
+     * OVERRIDE Tahap 5 — Polimorfisme
+     * Tagihan = 0 (biaya kuliah ditanggung negara melalui skema KIP-Kuliah)
      */
     public function hitungTagihanSemester(): float
     {

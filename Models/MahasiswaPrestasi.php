@@ -4,7 +4,7 @@
 //  UAS Pemrograman Berorientasi Objek (PBO)
 //  Kelas   : TRPL 1A
 //  Nama    : Irfan Fatih Rizki
-//  Tahap   : 4 — Subclass MahasiswaPrestasi
+//  Tahap   : 4 & 5 — Subclass MahasiswaPrestasi + Polimorfisme
 // ============================================================
 
 require_once 'koneksi.php';
@@ -41,12 +41,13 @@ class MahasiswaPrestasi extends Mahasiswa
     // ────────────────────────────────────────────────────────
 
     /**
-     * Prestasi = tarif UKT dikurangi subsidi beasiswa
-     * Jika tarif_ukt_nominal = 0, tagihan = 0 (full beasiswa)
+     * OVERRIDE Tahap 5 — Polimorfisme
+     * Tagihan = tarifUktNominal × 0.25
+     * (Potongan beasiswa prestasi 75%, mahasiswa bayar 25% saja)
      */
     public function hitungTagihanSemester(): float
     {
-        return $this->tarifUktNominal;
+        return $this->tarifUktNominal * 0.25;
     }
 
     /**
@@ -55,13 +56,15 @@ class MahasiswaPrestasi extends Mahasiswa
     public function tampilkanSpesifikasiAkademik(): void
     {
         echo "===== SPESIFIKASI AKADEMIK (PRESTASI) =====\n";
-        echo "ID Mahasiswa      : " . $this->id_mahasiswa        . "\n";
-        echo "Nama              : " . $this->nama_mahasiswa      . "\n";
-        echo "NIS               : " . $this->nis                 . "\n";
-        echo "Semester          : " . $this->semester            . "\n";
+        echo "ID Mahasiswa      : " . $this->id_mahasiswa         . "\n";
+        echo "Nama              : " . $this->nama_mahasiswa       . "\n";
+        echo "NIS               : " . $this->nis                  . "\n";
+        echo "Semester          : " . $this->semester             . "\n";
         echo "Instansi Beasiswa : " . $this->namaInstansiBeasiswa . "\n";
         echo "Minimal IPK       : " . number_format($this->minimalIpkSyarat, 2) . "\n";
-        echo "Tagihan Semester  : Rp " . number_format($this->hitungTagihanSemester(), 0, ',', '.') . "\n";
+        echo "Tarif UKT         : Rp " . number_format($this->tarifUktNominal, 0, ',', '.') . "\n";
+        echo "Potongan Beasiswa : 75%\n";
+        echo "Tagihan Semester  : Rp " . number_format($this->hitungTagihanSemester(), 0, ',', '.') . " (25% dari Tarif UKT)\n";
         echo "============================================\n";
     }
 

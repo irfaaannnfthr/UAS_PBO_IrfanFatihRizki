@@ -4,7 +4,7 @@
 //  UAS Pemrograman Berorientasi Objek (PBO)
 //  Kelas   : TRPL 1A
 //  Nama    : Irfan Fatih Rizki
-//  Tahap   : 4 — Subclass MahasiswaMandiri
+//  Tahap   : 4 & 5 — Subclass MahasiswaMandiri + Polimorfisme
 // ============================================================
 
 require_once 'koneksi.php';
@@ -40,11 +40,12 @@ class MahasiswaMandiri extends Mahasiswa
     // ────────────────────────────────────────────────────────
 
     /**
-     * Tagihan semester = tarif UKT penuh (dibayar sendiri)
+     * OVERRIDE Tahap 5 — Polimorfisme
+     * Tagihan = tarifUktNominal + Rp 100.000 (biaya operasional/praktikum)
      */
     public function hitungTagihanSemester(): float
     {
-        return $this->tarifUktNominal;
+        return $this->tarifUktNominal + 100000;
     }
 
     /**
@@ -53,14 +54,15 @@ class MahasiswaMandiri extends Mahasiswa
     public function tampilkanSpesifikasiAkademik(): void
     {
         echo "===== SPESIFIKASI AKADEMIK (MANDIRI) =====\n";
-        echo "ID Mahasiswa   : " . $this->id_mahasiswa    . "\n";
-        echo "Nama           : " . $this->nama_mahasiswa  . "\n";
-        echo "NIS            : " . $this->nis             . "\n";
-        echo "Semester       : " . $this->semester        . "\n";
-        echo "Golongan UKT   : " . $this->golonganUkt     . "\n";
-        echo "Nama Wali      : " . $this->namaWali        . "\n";
-        echo "Tarif UKT      : Rp " . number_format($this->tarifUktNominal, 0, ',', '.') . "\n";
-        echo "Tagihan Semester: Rp " . number_format($this->hitungTagihanSemester(), 0, ',', '.') . "\n";
+        echo "ID Mahasiswa      : " . $this->id_mahasiswa    . "\n";
+        echo "Nama              : " . $this->nama_mahasiswa  . "\n";
+        echo "NIS               : " . $this->nis             . "\n";
+        echo "Semester          : " . $this->semester        . "\n";
+        echo "Golongan UKT      : " . $this->golonganUkt     . "\n";
+        echo "Nama Wali         : " . $this->namaWali        . "\n";
+        echo "Tarif UKT         : Rp " . number_format($this->tarifUktNominal, 0, ',', '.') . "\n";
+        echo "Biaya Operasional : Rp 100.000\n";
+        echo "Tagihan Semester  : Rp " . number_format($this->hitungTagihanSemester(), 0, ',', '.') . "\n";
         echo "==========================================\n";
     }
 
